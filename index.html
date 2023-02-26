@@ -20,17 +20,17 @@
 
 
       <blockquote>
-        <p>An inspiring statement</p>
+        <p>An Inspiring Statement</p>
       </blockquote>
 
-      <section>
+      <section class="manifesto">
         <h2>📜 Manifesto</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Club Table Tennis at UVA strives to provide an opportunity for members of the University community to practice and play recreational and competitive table tennis throughout the year. The club organizes ping pong-related events to foster an appreciation and awareness of the sport. Anyone with an interest in table tennis is welcome to join. All skill levels welcome!
         </p>
 
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Check out our constitution for more details!
         </p>
 
         <p>
@@ -39,7 +39,7 @@
 
       </section>
 
-      <section class="light">
+      <section class="members">
         <h2>👩🏽‍🚀 Members</h2>
 
         <p>
@@ -55,10 +55,10 @@
       </section>
 
       <blockquote>
-        <p>Another inspiring statement <br>-someone</p>
+        <p>Please check out our Instagram and Facebook page!</p>
       </blockquote>
 
-      <section class="left">
+      <section class="content">
         <h2>🏓 Content</h2>
 
         <h3>LOL</h3>
@@ -84,15 +84,16 @@
     
     <script type="module" src="/main.js"></script>
     
+    //not working
     <script type="text/javascript" >
       let progress = document.getElementById('progressbar');
-      let totalHeight = document.body.scrollHeight - window.innerHeight;
-      window.onscroll = function(){
+      let totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      window.addEventListener('scroll',function(){
         let progressHeight = (window.pageYOffset / totalHeight) * 100;
-        progress.style.height = progressHeight + "%";
-      }
+        progress.style.height = `${progressHeight}%`;
+      })
     </script>
-
+    
   </body>
   
 </html>

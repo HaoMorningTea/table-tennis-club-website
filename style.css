@@ -35,13 +35,6 @@ h1, h2, h3, blockquote {
   font-style: normal;
 }
 
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
-
 
   header {
     background: transparent;
@@ -53,41 +46,82 @@ canvas {
   }
 
   section {
-    grid-column: 2 / 8;
+    grid-column: 2 / 12;
     padding: 1rem;
-    background: transparent;
+    background: linear-gradient(to top, #008aff, #00ffe7);
     font-size: 1.25rem;
     line-height: 1.5;
     margin-bottom: var(--spacing);
-    transition: 0.4s;
+    transition: 0.3s;
     border-radius: 1rem;
+    opacity: 0.3;
+  }
 
+  section p{
+    opacity: 0;
+    transition: 0.1s;
+  }
+
+  section h2{
+    transition: 0.1s;
   }
 
   section:hover{
-    background: orange;
-    animation: animate 20s linear infinite;
+    opacity: 1;
     color: black;
+  }
+
+  section:hover p{
+    opacity: 1;
   }
 
   blockquote {
-    margin: 0;
-    padding: 0;
+    margin: 1;
+    padding: 1rem;
     grid-column: 2 / span 9;
     margin-bottom: var(--spacing);
+    text-align: center;
+    overflow: hidden;
   }
 
   blockquote p {
-    color: black;
-    background-color: white;
+    color: rgb(188, 188, 188);
+    background-color: transparent;
     font-size: 4rem;
-    display: inline;
+    display: inline-block;
     line-height: 1;
+    transform: scale(1);
+    transition: all 0.2s ease-in-out 0.05s;
   }
 
-  .left {
-    grid-column: 6 / 12;
+  blockquote:hover p{
+    color: rgb(255, 255, 255);
+    transform: scale(1.2);
   }
+
+  .manifesto{
+    background: #232D4B;
+  }
+
+  .manifesto:hover{
+    color: white;
+  }
+
+  .members{
+    background: #E57200;
+  }
+
+  .members:hover{
+    color: black;
+  }
+
+  .content{
+    background: white;
+    color: white;
+  }
+
+
+
 
 ::-webkit-scrollbar{
   width: 0;
@@ -105,7 +139,7 @@ canvas {
   position: fixed;
   top: 0;
   right: 0;
-  width: 10px;
+  width: 4px;
   background: linear-gradient(to top, #008aff, #00ffe7);
   animation: animate 5s linear infinite;
 }

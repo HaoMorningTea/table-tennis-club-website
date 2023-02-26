@@ -16,12 +16,19 @@ camera.position.setX(-3);
 
 renderer.render(scene, camera);
 
-//torus 
-const geometry = new THREE.TorusGeometry(10, 3,  16, 100)
-const material = new THREE.MeshStandardMaterial({color: 0xFF6374});
-const torus = new THREE.Mesh(geometry, material);
+//ball 
+//const geometry = new THREE.ballGeometry(10, 3,  16, 100)
+const ballTexture = new THREE.TextureLoader().load('uva4.jpg');
 
-scene.add(torus);
+const geometry = new THREE.SphereGeometry( 15, 64, 32 );
+const material = new THREE.MeshStandardMaterial({map: ballTexture,});
+const ball = new THREE.Mesh(geometry, material);
+
+//const geometry2 = new THREE.CylinderGeometry( 2, 2, 15, 32);
+//const material2 = new THREE.MeshStandardMaterial({color: 0xFF6374});
+//const handle = new THREE.Mesh(geometry2, material2);
+
+scene.add(ball);
 
 //light
 const pointLight = new THREE.PointLight(0xffffff)
@@ -33,8 +40,8 @@ scene.add(pointLight)
 /*const lightHelper = new THREE.PointLightHelper(pointLight)
 const gridHelper = new THREE.GridHelper(200, 50);
 scene.add(lightHelper, gridHelper)
-
-const controls = new OrbitControls(camera, renderer.domElement);*/
+*/
+//const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 //add star
 function addStar(){
@@ -51,12 +58,12 @@ function addStar(){
 Array(40).fill().forEach(addStar)
 
 //scroll interaction
-//torus.position.setZ(-30);
+//ball.position.setZ(-30);
 function moveCamera(){
   const t = document.body.getBoundingClientRect().top;
-  torus.rotation.x += 0.05;
-  torus.rotation.y += 0.05;
-  torus.rotation.z += 0.05;
+  ball.rotation.x += 0.01;
+  ball.rotation.y += 0.15;
+  ball.rotation.z += 0.01;
   camera.position.z = t*-0.01;
   camera.position.x = t*-0.0002;
   camera.position.y = t*-0.0002;
@@ -68,9 +75,10 @@ moveCamera();
 //animate
 function animate(){
   requestAnimationFrame(animate);
-  torus.rotation.x+=0.01;
-  torus.rotation.y+=0.005;
-  torus.rotation.z+=0.005;
+  ball.rotation.x+=0;
+  ball.rotation.y+=0.005;
+  ball.rotation.z+=0;
+  //controls.addEventListener( 'change', ()=>{renderer.render(scene, camera)} );
   //controls.update();
   renderer.render(scene, camera);
 }
