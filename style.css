@@ -2,7 +2,10 @@ canvas {
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  object-fit: contain;
 }
+
 
 :root {
   --dark-bg: rgba(15, 15, 15, 0.95);
@@ -13,6 +16,43 @@ canvas {
   font-style: normal;
 }
 
+ /* Define CSS classes for each social media icon */
+
+ .social-icons-container {
+  display: flex; /* set parent container to flex */
+  justify-content: flex-start; /* align items to the left */
+  align-items: center; /* vertically center items */
+}
+
+.social-icons {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social-icons li {
+  margin: 0 25px;
+}
+
+.fa {
+  display: inline-block;
+  font-size: 40px;
+  transition: 200ms;
+  color: white;
+}
+
+.fa-facebook:hover {
+  color: blue;
+}
+
+.fa-twitter:hover {
+  color: #1da1f2;
+}
+
+.fa-instagram:hover {
+  color: #c13584;
+}
 
 main {
   width: 100vw;
@@ -96,7 +136,7 @@ h1, h2, h3, blockquote {
 
   blockquote:hover p{
     color: rgb(255, 255, 255);
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 
   .manifesto{
@@ -105,6 +145,39 @@ h1, h2, h3, blockquote {
 
   .manifesto:hover{
     color: white;
+  }
+
+  .button{
+    display: inline-flex;
+    height: 50px;
+    padding:0;
+    background: gray;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    overflow: hidden;
+    font-family: brandon-grotesque, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .button:hover{
+    background: #E57200;
+  }
+
+  .button__text, .button__icon{
+    display: inline-flex;
+    align-items: center;
+    padding: 0 24px;
+    color: white;
+    height: 100%;
+  }
+
+  .button__icon{
+    font-size: 1.5rem;
+    background: rgba(0, 0, 0, 0.08) ;
   }
 
   .members{

@@ -11,8 +11,8 @@ const renderer = new THREE.WebGL1Renderer({
 
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
-camera.position.setZ(30);
-camera.position.setX(-3);
+camera.position.setZ(10);
+camera.position.setY(3);
 
 renderer.render(scene, camera);
 
@@ -58,28 +58,54 @@ function addStar(){
 Array(40).fill().forEach(addStar)
 
 //scroll interaction
-//ball.position.setZ(-30);
+ball.position.setZ(-30);
+ball.position.setX(0);
+ball.position.setY(0);
+
 function moveCamera(){
   const t = document.body.getBoundingClientRect().top;
   ball.rotation.x += 0.01;
   ball.rotation.y += 0.15;
   ball.rotation.z += 0.01;
-  camera.position.z = t*-0.01;
-  camera.position.x = t*-0.0002;
-  camera.position.y = t*-0.0002;
+  var x = camera.position.x,
+  y = camera.position.y,
+  z = camera.position.z,
+  i = 100000;
+
+  camera.position.x = x * Math.cos(t/i) + z * Math.sin(t/i);
+  camera.position.z = z * Math.cos(t/i) - x * Math.sin(t/i);
+  camera.lookAt(ball.position);
 }
 
-document.body.onscroll = moveCamera;
-moveCamera();
 
-//animate
+
+
+
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+// Call it once after the renderer is created
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+// Add an event listener to update renderer size on window resize
+window.addEventListener('resize', onWindowResize);
+
 function animate(){
+  //update camera and renderer
   requestAnimationFrame(animate);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  //move camera function called
+  document.body.onscroll = moveCamera;
+
   ball.rotation.x+=0;
   ball.rotation.y+=0.005;
   ball.rotation.z+=0;
-  //controls.addEventListener( 'change', ()=>{renderer.render(scene, camera)} );
-  //controls.update();
   renderer.render(scene, camera);
 }
+
 animate();

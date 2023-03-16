@@ -16,6 +16,14 @@
       <header>
         <h1>CLUB TABLE TENNIS</h1>
         <p>@UVA</p>
+        <!-- Add social media icons using the <i> tag and the appropriate CSS class -->
+        <div class="social-icons">
+          <ul class="social-icons">
+            <li><a href="https://www.facebook.com/tabletennisatuva/"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com/tabletennisatuva/?hl=en"><i class="fa fa-instagram"></i></a></li>
+          </ul>
+        </div>
       </header>
 
 
@@ -25,6 +33,14 @@
 
       <section class="manifesto">
         <h2>📜 Manifesto</h2>
+        <form method="get" action="Club_Table_Tennis_at_UVA_constitution.docx">
+          <button type="submit" class="button">
+            <span class="button__text">Download</span>
+            <span class="button__icon">
+              <ion-icon name="download-outline"></ion-icon>
+            </span>
+          </button>
+        </form>
         <p>
           Club Table Tennis at UVA strives to provide an opportunity for members of the University community to practice and play recreational and competitive table tennis throughout the year. The club organizes ping pong-related events to foster an appreciation and awareness of the sport. Anyone with an interest in table tennis is welcome to join. All skill levels welcome!
         </p>
@@ -82,9 +98,12 @@
 
     </main>
     
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="/main.js">
+      //var canvas = document.getElementById('responsive-canvas');
+      //var heightRatio = 1.5;
+      //canvas.height = canvas.width * heightRatio;
+    </script>
     
-    //not working
     <script type="text/javascript" >
       let progress = document.getElementById('progressbar');
       let totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -94,6 +113,10 @@
       })
     </script>
     
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Include the Font Awesome CDN for the icons -->
+    <script src="https://kit.fontawesome.com/f51708aa70.js" crossorigin="anonymous"></script>
   </body>
   
 </html>
