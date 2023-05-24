@@ -12,7 +12,6 @@ const renderer = new THREE.WebGL1Renderer({
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 camera.position.setZ(10);
-camera.position.setY(3);
 
 renderer.render(scene, camera);
 
@@ -29,6 +28,7 @@ const ball = new THREE.Mesh(geometry, material);
 //const handle = new THREE.Mesh(geometry2, material2);
 
 scene.add(ball);
+ball.position.set(0, 0, -50);
 
 //light
 const pointLight = new THREE.PointLight(0xffffff)
@@ -36,45 +36,55 @@ const ambientLight = new THREE.AmbientLight(0xffffff)
 pointLight.position.set(20,20,20)
 scene.add(pointLight)
 
-//helper & control
-/*const lightHelper = new THREE.PointLightHelper(pointLight)
-const gridHelper = new THREE.GridHelper(200, 50);
-scene.add(lightHelper, gridHelper)
-*/
-//const controls = new THREE.OrbitControls(camera, renderer.domElement);
-
 //add star
 function addStar(){
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
   const material = new THREE.MeshStandardMaterial({color: 0xffffff})
   const star = new THREE.Mesh(geometry, material);
 
-  const [x,y,z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100));
-
+  const [x,z] = Array(2).fill().map(() => THREE.MathUtils.randFloatSpread(300));
+  const y = THREE.MathUtils.randFloatSpread(1200);
   star.position.set(x, y, z);
   scene.add(star)
 }
 
-Array(40).fill().forEach(addStar)
+Array(500).fill().forEach(addStar)
 
-//scroll interaction
-ball.position.setZ(-30);
-ball.position.setX(0);
-ball.position.setY(0);
+// Set up initial velocity and acceleration for the ball
+let ballVelocity = new THREE.Vector3(0, 0, -0.5);
+let ballAcceleration = new THREE.Vector3(0, -0.001, 0);
+
+//make ball look at mouse
+var target = new THREE.Vector3();
+
+var mouseX = 0, mouseY = 0;
+
+var windowHalfX = window.innerWidth / 2;
+var windowHalfY = window.innerHeight / 2;
+
+function onDocumentMouseMove( event ) {
+
+  mouseX = ( event.clientX - windowHalfX );
+  mouseY = ( event.clientY - windowHalfY );
+
+}
+
+// Add event listener for mouse movement
+window.addEventListener('mousemove', onDocumentMouseMove);
 
 function moveCamera(){
-  const t = document.body.getBoundingClientRect().top;
-  ball.rotation.x += 0.01;
-  ball.rotation.y += 0.15;
-  ball.rotation.z += 0.01;
-  var x = camera.position.x,
-  y = camera.position.y,
-  z = camera.position.z,
-  i = 100000;
+  const mouseXNormalized = (mouseX / window.innerWidth) * 2 ;
+  const mouseYNormalized = (mouseY / window.innerHeight) * 2 ;
 
-  camera.position.x = x * Math.cos(t/i) + z * Math.sin(t/i);
-  camera.position.z = z * Math.cos(t/i) - x * Math.sin(t/i);
-  camera.lookAt(ball.position);
+  const maxShift = 5; // Adjust this value to control the maximum shift
+
+  const cameraTarget = new THREE.Vector3(mouseXNormalized * maxShift, -window.scrollY / 10 -mouseYNormalized * maxShift, -50);
+  // Calculate the offset caused by the ball's position
+  //const ballOffset = new THREE.Vector3().subVectors(ball.position, cameraTarget);
+  // Apply the offset to the camera target
+  //cameraTarget.add(ballOffset);
+ 
+  camera.lookAt(cameraTarget);
 }
 
 
@@ -96,15 +106,24 @@ window.addEventListener('resize', onWindowResize);
 function animate(){
   //update camera and renderer
   requestAnimationFrame(animate);
+  target.x += ( mouseX - target.x ) * .01;
+  target.y += ( - mouseY - target.y ) * .01;
+  target.z = camera.position.z; // assuming the camera is located at ( 0, 0, z );
+  ball.position.add(new THREE.Vector3((mouseX - target.x) * 0.00018, (-mouseY - target.y) * 0.00018, 0));
+  ball.lookAt( target );
+  ball.rotateY(- (Math.PI / 2));
+
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 
-  //move camera function called
-  document.body.onscroll = moveCamera;
+  // Calculate the scroll position of the webpage
+  const scrollPos = window.scrollY;
 
-  ball.rotation.x+=0;
-  ball.rotation.y+=0.005;
-  ball.rotation.z+=0;
+  moveCamera();
+
+  // Update the position of camera based on the scroll position
+  camera.position.set(0, -scrollPos / 10, 0);
+  
   renderer.render(scene, camera);
 }
 
