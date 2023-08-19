@@ -37,7 +37,7 @@ canvas {
   margin: 0 25px;
 }
 
-.fa,.fa-brands,.fa-solid{
+.fa-facebook, .fa-user-group, .fa-instagram{
   display: inline-block;
   font-size: 40px;
   transition: 500ms;
@@ -59,20 +59,20 @@ canvas {
 main {
   width: 100vw;
   background-color: transparent;
-  color: white;
   z-index: 99;
   position: absolute;
   margin: 0px auto;
+  color: white;
   padding: 0px 0px;
   box-sizing:border-box;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   overflow: hidden;
   left: 0;
-  cursor: url(ping-pong.png), auto;
+  cursor: url(assets/ping-pong.png), auto;
 }
 
-a{cursor: url(ping-pong-2.png), auto;}
+a{cursor: url(assets/ping-pong-2.png), auto;}
 
 
 h1, h2, h3{
@@ -82,8 +82,9 @@ h1, h2, h3{
 }
 
 blockquote{
-  font-family: papyrus, fantasy;
-  font-weight: 700;
+  font-family: Brush Script MT, Brush Script Std, cursive;
+  font-weight: 200;
+  font-size: x-large;
   font-style: normal;
 }
 
@@ -97,15 +98,21 @@ blockquote{
     text-align: left;
   }
 
+  header p{
+    font-family: elevon, sans-serif;
+    font-weight: 700;
+    margin-top: -30px;
+  }
+
   section {
     grid-column: 2 / 12;
     padding: 1rem;
-    background: linear-gradient(to top, #008aff, #00ffe7);
     font-size: 1.25rem;
     line-height: 1.5;
-    margin-bottom: var(--spacing);
     transition: 0.3s;
-    border-radius: 1rem;
+    border-radius: 0rem;
+    border-width: 10px;
+    border-style: solid;
     opacity: 1;
   }
 
@@ -141,10 +148,18 @@ blockquote{
     color: rgb(255, 255, 255);
   }
 
-  #parent1{
-    position: relative;
+  .parent{
     grid-column: 2/12;
     margin-bottom: var(--spacing);
+    opacity: 0.5;
+    transition: 1s;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .parent:hover{
+    opacity: 1;
   }
 
   .absolute-child{
@@ -152,9 +167,15 @@ blockquote{
   }
 
   .constitution{
-    background: #232D4B;
+    background:rgba(35, 45, 75, 0.5);
     color: white;
     z-index: 1;
+    border-color: #121726;
+  }
+
+
+  .constitution:hover{
+    background:rgba(35, 45, 75, 1);
   }
 
   .red{
@@ -177,7 +198,7 @@ blockquote{
     display: inline-flex;
     height: 50px;
     padding:0;
-    background: gray;
+    background: 	rgba(128, 128, 128, 0.5);
     border: none;
     outline: none;
     border-radius: 5px;
@@ -186,11 +207,11 @@ blockquote{
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.5s;
   }
 
   .button:hover{
-    background: #E57200;
+    background:rgba(128, 128, 128, 0.8);;
   }
 
   .button__text, .button__icon{
@@ -207,13 +228,25 @@ blockquote{
   }
 
   .members{
-    background: #E57200;
+    background:rgba(229, 114, 0, 0.5);
     color: black;
+    border-color:#683c10;
+  }
+
+  .members:hover{
+    background:rgba(229, 114, 0, 1);
+   
   }
 
   .content{
-    background: white;
+    background: rgba(192,192,192,0.5);
     color: black;
+    border-color: #606060
+
+  }
+
+  .content:hover{
+    background: rgba(192,192,192,1);
   }
 
 
@@ -236,7 +269,7 @@ blockquote{
   top: 0;
   right: 0;
   width: 4px;
-  background: linear-gradient(to top, #008aff, #00ffe7);
+  background: linear-gradient(to top, white,black);
   animation: animate 5s linear infinite;
 }
 
@@ -274,8 +307,8 @@ blockquote{
 footer{
   grid-column: 1 / -1;
   position:relative; 
-  background: #E57200;
-  min-height:200px;
+  background: white;
+  min-height:300px;
   padding: 20px 50px;
   display: flex;
   justify-content: center;
@@ -295,23 +328,33 @@ footer .menu{
 
 footer .menu li a{
   font-size: 1.2em;
-  color: white;
+  color: black;
   margin: 0 10px;
   display: inline-block;
   text-decoration: none;
   opacity: 1;
   transition: 0.5s;
+  font-weight: 800;
 }
 
 footer .menu li a:hover{
-  color: #232D4B;
+  transform: scale(115%);
 }
 
 footer p{
+  color: black;
   text-align: center;
   margin-top: 5px;
   margin-bottom: 10px;
   font-size: 0.8em;
+}
+
+footer .fa-facebook, footer .fa-user-group, footer .fa-instagram {
+  color: black;
+}
+
+.fa:hover, .fa-brands:hover, .fa-solid:hover {
+  transform: scale(115%);
 }
 
 footer .wave{
@@ -320,58 +363,9 @@ footer .wave{
   left: 0;
   width: 100%;
   height: 100px;
-  background: url(wave2.png);
   background-size: 1000px 100px;
-}
-
-footer .wave#wave1{
-  z-index: 1000;
-  opacity: 1;
-  bottom: 0;
-  animation: animateWave 4s linear infinite;
-}
-
-footer .wave#wave2{
-  z-index: 999;
-  opacity: 0.5;
-  bottom: 10px;
-  animation: animateWave_02 4s linear infinite;
-}
-
-footer .wave#wave3{
-  z-index: 1000;
-  opacity: 0.2;
-  bottom: 15px;
-  animation: animateWave 3s linear infinite;
-}
-
-footer .wave#wave4{
-  z-index: 999;
-  opacity: 0.7;
-  bottom: 20px;
-  animation: animateWave_02 3s linear infinite;
-}
-
-@keyframes animateWave{
-  0%
-  {
-    background-position-x: 1000px;
-  }
-  100%
-  {
-    background-position-x: 0px;
-  }
-}
-
-@keyframes animateWave_02{
-  0%
-  {
-    background-position-x: 0px;
-  }
-  100%
-  {
-    background-position-x: 1000px;
-  }
+  background-image: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.8)), url('assets/skyline3.png');
+  transform: scaleY(1.6);
 }
 
 .hidden{
@@ -408,12 +402,12 @@ footer .wave#wave4{
 
 .red.show.l.img{
   left: calc(100% - 100px);
-  transform: rotate(2turn);
+  transform: rotate(375deg);
 }
 
 .yellow.show.l.img{
   left: calc(100% - 200px);
-  transform: rotate(2turn);
+  transform: rotate(-375deg);
   transition-delay: 0.2s;
 }
 

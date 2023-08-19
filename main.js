@@ -17,7 +17,7 @@ renderer.render(scene, camera);
 
 //ball 
 //const geometry = new THREE.ballGeometry(10, 3,  16, 100)
-const ballTexture = new THREE.TextureLoader().load('uva4.jpg');
+const ballTexture = new THREE.TextureLoader().load('assets/uva4.jpg');
 
 const geometry = new THREE.SphereGeometry( 15, 64, 32 );
 const material = new THREE.MeshStandardMaterial({map: ballTexture,});
@@ -56,9 +56,7 @@ let ballAcceleration = new THREE.Vector3(0, -0.001, 0);
 
 //make ball look at mouse
 var target = new THREE.Vector3();
-
 var mouseX = 0, mouseY = 0;
-
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
@@ -76,7 +74,7 @@ function moveCamera(){
   const mouseXNormalized = (mouseX / window.innerWidth) * 2 ;
   const mouseYNormalized = (mouseY / window.innerHeight) * 2 ;
 
-  const maxShift = 5; // Adjust this value to control the maximum shift
+  const maxShift = 10; // Adjust this value to control the maximum shift
 
   const cameraTarget = new THREE.Vector3(mouseXNormalized * maxShift, -window.scrollY / 10 -mouseYNormalized * maxShift, -50);
   // Calculate the offset caused by the ball's position
@@ -88,13 +86,37 @@ function moveCamera(){
 }
 
 
+// Define a function for debouncing the scroll event
+function debounce(func, delay) {
+  let timer;
+  return function () {
+    const context = this;
+    const args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      func.apply(context, args);
+    }, delay);
+  };
+}
 
+// Function to update the camera position based on scroll position
+function updateCameraPosition() {
+  const scrollPos = window.scrollY;
+  camera.position.set(0, -scrollPos / 10, 0);
+}
+
+// Add the debounced event listener for scroll
+window.addEventListener('scroll', updateCameraPosition);
 
 
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+
+  // Update window half values
+  windowHalfX = window.innerWidth / 2;
+  windowHalfY = window.innerHeight / 2;
 }
 
 // Call it once after the renderer is created
@@ -106,23 +128,23 @@ window.addEventListener('resize', onWindowResize);
 function animate(){
   //update camera and renderer
   requestAnimationFrame(animate);
-  target.x += ( mouseX - target.x ) * .01;
-  target.y += ( - mouseY - target.y ) * .01;
+  target.x += ( mouseX - target.x ) * .005;
+  target.y += ( - mouseY - target.y ) * .005;
   target.z = camera.position.z; // assuming the camera is located at ( 0, 0, z );
-  ball.position.add(new THREE.Vector3((mouseX - target.x) * 0.00018, (-mouseY - target.y) * 0.00018, 0));
+  ball.position.add(new THREE.Vector3((mouseX - target.x) * 0.0001, (-mouseY - target.y) * 0.0001, 0));
   ball.lookAt( target );
   ball.rotateY(- (Math.PI / 2));
 
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
+  //camera.aspect = window.innerWidth / window.innerHeight;
+  //camera.updateProjectionMatrix();
 
   // Calculate the scroll position of the webpage
-  const scrollPos = window.scrollY;
+  //const scrollPos = window.scrollY;
 
   moveCamera();
-
+  updateCameraPosition()
   // Update the position of camera based on the scroll position
-  camera.position.set(0, -scrollPos / 10, 0);
+  //camera.position.set(0, -scrollPos / 10, 0);
   
   renderer.render(scene, camera);
 }
