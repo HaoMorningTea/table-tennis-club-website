@@ -1,0 +1,37 @@
+.nav_wrapper {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    min-height: 200px;
+    width: 100%; /* Make the wrapper span the full width */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: 1000; /* Ensure the wrapper is above other elements */
+  }
+
+.navigation {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 100;
+}
+
+.navigation li a {
+    font-size: 1.2em;
+    color: white;
+    margin: 0 10px;
+    display: inline-block;
+    text-decoration: none;
+    opacity: 1;
+    transition: 0.5s;
+    font-weight: 800;
+}
+
+.navigation li a:hover {
+    transform: scale(1.15);
+}
