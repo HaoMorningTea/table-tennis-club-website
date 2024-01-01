@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Club Table Tennis @ UVA</title>
   </head>
@@ -14,15 +14,15 @@
     <main>
       <div class = "nav_wrapper">
         <ul class="navigation">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#members">Members</a></li>
-          <li><a href="#accomplishments">Accompishments</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#home" onclick="scrollToSection('#home')">Home</a></li>
+          <li><a href="#about" onclick="scrollToSection('#about')">About</a></li>
+          <li><a href="#members" onclick="scrollToSection('#members')">Members</a></li>
+          <li><a href="#accomplishments" onclick="scrollToSection('#accomplishments')">Accompishments</a></li>
+          <li><a href="#contact" onclick="scrollToSection('#contact')">Contact</a></li>
         </ul>
       </div>
       
-      <a name="home"></a>
+      <a id="home"></a>
       <header class = "hidden f">
         <h1>CLUB TABLE TENNIS</h1>
         <p>@UVA</p>
@@ -44,9 +44,9 @@
 
       <div class = "parent" id = "parent1">
         <section class="constitution hidden l" >
-          <a name="about"></a>
+          <a id="about"></a>
           <h2>📜 Constitution</h2>
-          <form method="get" action="Club_Table_Tennis_at_UVA_constitution.docx">
+          <form method="get" action="assets/Club_Table_Tennis_at_UVA_constitution.docx">
             <button type="submit" class="button">
               <span class="button__text">Download</span>
               <span class="button__icon">
@@ -73,7 +73,7 @@
 
       <div class = "parent" id = "parent2">
         <section class="members hidden r">
-          <a name="members"></a>
+          <a id="members"></a>
           <h2>👩🏽‍🚀 Members</h2>
   
           <p>
@@ -96,7 +96,7 @@
 
       <div class = "parent" id = "parent3">
         <section class="content hidden r">
-          <a name="accomplishments"></a>
+          <a id="accomplishments"></a>
           <h2>🏓 Acccomplishments</h2>
   
           <h3>LOL</h3>
@@ -119,7 +119,6 @@
         <p>JOIN US</p>
       </blockquote>
 
-      <a name="contact"></a>
       <footer class = "hidden f">
         <div class="waves">
           <div class="wave" id="wave1"></div>
@@ -127,6 +126,7 @@
           <div class="wave" id="wave3"></div>
           <div class="wave" id="wave4"></div>
         </div>
+        <a id="contact"></a>
         <ul class="social-icons">
           <li><a href="https://www.facebook.com/tabletennisatuva/"><i class="fa-brands fa-facebook"></i></a></li>
           <li><a href="https://groupme.com/join_group/70072736/4BotDVcQ"><i class="fa-sharp fa-solid fa-user-group"></i></a></li>
@@ -144,7 +144,27 @@
 
     </main>
 
+    <!--mvoe to above the anchor tag-->
+    <script>
+      function scrollToSection(target) {
+        event.preventDefault();
+
+        const targetElement = document.querySelector(target);
     
+        
+          const offset = 200; // Adjust this value as needed
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+    
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+        
+        console.log('Target Element:', target);
+        console.log('Target Position:', targetPosition);
+      }
+    </script>
     
     <script defer type="module" src="/main.js">
       //var canvas = document.getElementById('responsive-canvas');
@@ -154,8 +174,9 @@
     
     <script defer type="text/javascript" >
       let progress = document.getElementById('progressbar');
-      let totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      
       window.addEventListener('scroll',function(){
+        let totalHeight = document.documentElement.scrollHeight - window.innerHeight;
         let progressHeight = (window.pageYOffset / totalHeight) * 100;
         progress.style.height = `${progressHeight}%`;
       })
@@ -167,6 +188,7 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <!-- Include the Font Awesome CDN for the icons -->
     <script src="https://kit.fontawesome.com/f51708aa70.js" crossorigin="anonymous"></script>
+
   </body>
 
 </html>
