@@ -72,10 +72,10 @@ main {
   grid-template-columns: repeat(12, 1fr);
   overflow: hidden;
   left: 0;
-  cursor: url(assets/ping-pong.png), auto;
+  cursor: url(./assets/ping-pong.png), auto;
 }
 
-a{cursor: url(assets/ping-pong-2.png), auto;}
+a{cursor: url(./assets/ping-pong-2.png), auto;}
 
 
 h1, h2, h3{
@@ -182,7 +182,7 @@ blockquote{
   }
 
   .red{
-    background-image: url('assets/paddle.png'); 
+    background-image: url('./assets/paddle.png'); 
     width: 200px;    
     height: 200px;
     z-index: 2;
@@ -368,7 +368,7 @@ footer .wave{
   width: 100%;
   height: 100px;
   background-size: 1000px 100px;
-  background-image: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.8)), url('assets/skyline3.png');
+  background-image: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.8)), url('./assets/skyline3.png');
   transform: scaleY(1.6);
 }
 
