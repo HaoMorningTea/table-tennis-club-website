@@ -182,7 +182,7 @@ blockquote{
   }
 
   .red{
-    background-image: url('/assets/paddle.png1'); 
+    background-image: url('/assets/paddle.png'); 
     width: 200px;    
     height: 200px;
     z-index: 2;
