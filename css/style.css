@@ -109,11 +109,11 @@ blockquote{
 
   section {
     grid-column: 2 / 12;
-    padding: 1rem;
+    padding: 5rem;
     font-size: 1.25rem;
     line-height: 1.5;
     transition: 0.3s;
-    border-radius: 0rem;
+    border-radius: 5rem;
     border-width: 10px;
     border-style: solid;
     opacity: 1;
@@ -122,6 +122,7 @@ blockquote{
   section p{
     opacity: 1;
     transition: 0.1s;
+    font-weight: 600;
   }
 
   section h2{
@@ -238,7 +239,7 @@ blockquote{
   }
 
   .members:hover{
-    background:rgba(229, 114, 0, 1);
+    background:rgb(227, 138, 49);
    
   }
 
@@ -252,61 +253,6 @@ blockquote{
   .content:hover{
     background: rgba(192,192,192,1);
   }
-
-
-
-
-::-webkit-scrollbar{
-  width: 0;
-}
-#scrollPath{
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 10px;
-  height: 100%;
-  background: rgba(225, 225, 225, 0.05);
-}
-
-#progressbar{
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 4px;
-  background: linear-gradient(to top, white,black);
-  animation: animate 5s linear infinite;
-}
-
-@keyframes animate{
-  0%, 100%{
-    filter: hue-rotate(0deg);
-  }
-  50%{
-    filter: hue-rotate(360deg);
-  }
-}
-
-#progressbar:before{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top, #008aff, #00ffe7);
-  filter: blur(10px);
-}
-
-#progressbar:after{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top, #008aff, #00ffe7);
-  filter: blur(30px);
-}
 
 footer{
   grid-column: 1 / -1;
