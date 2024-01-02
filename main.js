@@ -17,7 +17,7 @@ renderer.render(scene, camera);
 
 //ball 
 //const geometry = new THREE.ballGeometry(10, 3,  16, 100)
-const ballTexture = new THREE.TextureLoader().load('uva4.jpg');
+const ballTexture = new THREE.TextureLoader().load('/uva4.jpg');
 
 const geometry = new THREE.SphereGeometry( 15, 64, 32 );
 const material = new THREE.MeshStandardMaterial({map: ballTexture,});
