@@ -84,6 +84,13 @@ h1, h2, h3{
   font-style: normal;
 }
 
+h4{
+  font-family: elevon, sans-serif;
+  font-weight: 1400;
+  font-style: normal;
+  font-size: 100px;
+}
+
 blockquote{
   font-family: Brush Script MT, Brush Script Std, cursive;
   font-weight: 200;
@@ -160,6 +167,7 @@ blockquote{
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    height: max-content;
   }
 
   .parent:hover{
@@ -180,6 +188,10 @@ blockquote{
 
   .constitution:hover{
     background:rgba(35, 45, 75, 1);
+  }
+
+  .constitution h4{
+    color: #1da1f2;
   }
 
   .red{
@@ -240,7 +252,10 @@ blockquote{
 
   .members:hover{
     background:rgb(227, 138, 49);
-   
+  }
+
+  .members h4{
+    color: rgb(255, 204, 0);
   }
 
   .content{
@@ -252,6 +267,10 @@ blockquote{
 
   .content:hover{
     background: rgba(192,192,192,1);
+  }
+
+  .content h4{
+    color: aquamarine;
   }
 
 footer{
@@ -314,8 +333,8 @@ footer .wave{
   width: 100%;
   height: 100px;
   background-size: 1000px 100px;
-  background-image: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.8)), url('/assets/skyline3.png');
-  transform: scaleY(1.6);
+  background-image: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 1)), url('/assets/skyline3.png');
+  transform: scaleY(1.4);
 }
 
 .hidden{
